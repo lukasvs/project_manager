@@ -97,19 +97,25 @@ function project_manager_add_description_field(ConfigEntityInterface $entity_typ
  * @param \Drupal\Core\Config\Entity\ConfigEntityInterface $entity_type
  *   The entity type.
  */
-function project_manager_add_reference_field(ConfigEntityInterface $entity_type, $label, $name, $target_type, array $target_bundles, $lock = TRUE) {
+function project_manager_add_reference_field(ConfigEntityInterface $entity_type, $label, $name, $required, $target_type, array $target_bundles = NULL, $сardinality = -1, $lock = TRUE) {
   $field_definition = BundleFieldDefinition::create('entity_reference')
    ->setTargetEntityTypeId($entity_type->getEntityType()->getBundleOf())
    ->setTargetBundle($entity_type->id())
    ->setName($name)
    ->setLabel($label)
-   ->setCardinality(BundleFieldDefinition::CARDINALITY_UNLIMITED)
-   ->setRequired(TRUE)
+   ->setCardinality($сardinality)
+   ->setRequired($required)
    ->setSetting('target_type', $target_type)
    ->setSetting('handler', 'default')
    ->setSetting('handler_settings', [
     'target_bundles' => $target_bundles
   ]);
+
+  if ($target_type == 'user') {
+    $field_definition->setSetting('handler_settings', [
+      'include_anonymous' => FALSE
+    ]);
+  }
 
   $configurable_field_manager = \Drupal::service('project_manager.configurable_field_manager');
   $configurable_field_manager->createField($field_definition, $lock);

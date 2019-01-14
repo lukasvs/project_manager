@@ -16,7 +16,9 @@ class PmProjectTypeEntityForm extends PmTypeEntityForm {
 
     // Create the needed fields.
     project_manager_add_description_field($entity_type);
-    project_manager_add_reference_field($entity_type, 'Owner', 'owner', 'user', ['user'], TRUE);
+    project_manager_add_reference_field($entity_type, 'Owner', 'owner', FALSE, 'user', NULL, 1, TRUE);
+    project_manager_add_reference_field($entity_type, 'Responsible', 'responsible',  FALSE, 'user', NULL, -1, TRUE);
+    project_manager_add_reference_field($entity_type, 'Project stage', 'project_stage',  FALSE, 'taxonomy_term', ['project_stage'], 1, TRUE);
 
     $this->messenger()->addMessage($this->t('The entity type %label has been successfully saved.', ['%label' => $entity_type->label()]));
     $form_state->setRedirectUrl($this->entity->toUrl('collection'));
