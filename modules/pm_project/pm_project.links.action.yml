@@ -1,0 +1,10 @@
+entity.pm_project.add_form:
+  route_name: entity.pm_project.add_page
+  title: 'Add project'
+  appears_on:
+    - entity.pm_project.collection
+entity.pm_project_type.add_form:
+  route_name: entity.pm_project_type.add_form
+  title: 'Add project type'
+  appears_on:
+    - entity.pm_project_type.collection

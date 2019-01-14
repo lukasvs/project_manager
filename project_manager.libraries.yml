@@ -1,0 +1,9 @@
+toolbar:
+  css:
+    theme:
+      css/project_manager.icons.css: {}
+
+form:
+  css:
+    theme:
+      css/project_manager.form.css: {}

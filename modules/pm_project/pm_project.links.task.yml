@@ -1,0 +1,14 @@
+entity.pm_project.canonical:
+  route_name: entity.pm_project.canonical
+  base_route: entity.pm_project.canonical
+  title: 'View'
+
+entity.pm_project.page_edit:
+  route_name: entity.pm_project.edit_form
+  base_route: entity.pm_project.canonical
+  title: Edit
+
+entity.pm_project_type.edit_form:
+  route_name: entity.pm_project_type.edit_form
+  base_route: entity.pm_project_type.edit_form
+  title: Edit

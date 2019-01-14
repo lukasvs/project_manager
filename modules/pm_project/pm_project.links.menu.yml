@@ -1,0 +1,15 @@
+# PM project menu items definition
+entity.pm_project.collection:
+  title: 'PM project list'
+  route_name: entity.pm_project.collection
+  description: 'List PM project entities'
+  parent: project_manager.admin_project_manager
+  weight: 4
+
+# PM project type menu items definition
+entity.pm_project_type.collection:
+  title: 'PM project type'
+  route_name: entity.pm_project_type.collection
+  description: 'List PM project type (bundles)'
+  parent: project_manager.configuration
+  weight: 4

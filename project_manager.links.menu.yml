@@ -1,0 +1,13 @@
+project_manager.admin_project_manager:
+  title: 'Project manager'
+  route_name: 'project_manager.admin_project_manager'
+  parent: 'system.admin'
+  description: 'Administer and configure your Project manager.'
+  weight: -9
+
+project_manager.configuration:
+  title: 'Configuration'
+  route_name: 'project_manager.configuration'
+  parent: 'project_manager.admin_project_manager'
+  description: 'Configure your Project manager.'
+  weight: -9

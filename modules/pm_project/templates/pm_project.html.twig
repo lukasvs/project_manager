@@ -1,0 +1,22 @@
+{#
+/**
+ * @file pm_project.html.twig
+ * Default theme implementation to present pm_project data.
+ *
+ * This template is used when viewing pm_project pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_pm_project()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('pm_project') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function project_manager_theme() {
+  return [
+    'project_manager_form' => [
+      'render element' => 'form',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_toolbar_alter().
+ */
+function project_manager_toolbar_alter(&$items) {
+  $items['administration']['#attached']['library'][] = 'project_manager/toolbar';
+}

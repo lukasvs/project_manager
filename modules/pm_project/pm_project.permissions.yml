@@ -1,0 +1,27 @@
+administer pm_project entities:
+  title: 'Administer PM_project entities'
+  description: 'Allow to access the administration form to configure PM_project entities.'
+  restrict access: true
+
+delete pm_project entities:
+  title: 'Delete PM_project entities'
+
+edit pm_project entities:
+  title: 'Edit PM_project entities'
+
+view published pm_project entities:
+  title: 'View published PM_project entities'
+
+view unpublished pm_project entities:
+  title: 'View unpublished PM_project entities'
+
+view all pm_project revisions:
+  title: 'View all PM_project revisions'
+
+revert all pm_project revisions:
+  title: 'Revert all PM_project revisions'
+  description: 'Role requires permission <em>view PM_project revisions</em> and <em>edit rights</em> for pm_project entities in pm_project or <em>administer pm_project entities</em>.'
+
+delete all pm_project revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view PM_project revisions</em> and <em>delete rights</em> for pm_project entities in pm_project or <em>administer pm_project entities</em>.'

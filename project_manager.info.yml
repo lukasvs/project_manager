@@ -1,0 +1,7 @@
+name: Project manager
+type: module
+description: Provides manager of project.
+core: 8.x
+package: Project manager
+dependencies:
+  - drupal:system (>=8.6.0)

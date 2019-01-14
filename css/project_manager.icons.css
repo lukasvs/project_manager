@@ -1,0 +1,20 @@
+/**
+ * @file
+ * E-learning toolbar icon styling.
+ */
+
+/* Bar styling (first row), currently unused. */
+.toolbar-bar .toolbar-icon-project-manager-admin-project-manager:before {
+  background-image: url("../icons/bebebe/drupal-pm.svg");
+}
+.toolbar-bar .toolbar-icon-project-manager-admin-project-manager:active:before {
+  background-image: url("../icons/ffffff/drupal-pm.svg");
+}
+
+/* Tray styling (second row) */
+.toolbar-tray .toolbar-icon.toolbar-icon-project-manager-admin-project-manager:before {
+  background-image: url("../icons/787878/drupal-pm.svg");
+}
+.toolbar-tray .toolbar-icon.toolbar-icon-project-manager-admin-project-manager:active:before {
+  background-image: url("../icons/000000/drupal-pm.svg");
+}

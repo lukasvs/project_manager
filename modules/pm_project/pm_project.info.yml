@@ -1,0 +1,9 @@
+name: PM Project
+type: module
+description: Provides project entity type for project_manager.
+core: 8.x
+package: Project manager
+dependencies:
+  - project_manager:project_manager
+  - drupal:path
+  - drupal:text

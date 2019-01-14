@@ -1,0 +1,16 @@
+project_manager.admin_project_manager:
+  path: '/admin/project_manager'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Project manager'
+  requirements:
+    _permission: 'access project_manager administration pages'
+
+project_manager.configuration:
+  path: '/admin/project_manager/config'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    link_id: 'project_manager.configuration'
+    _title: 'Configuration'
+  requirements:
+    _permission: 'access project_manager administration pages'

@@ -1,0 +1,38 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function pm_project_theme() {
+  $theme = [];
+  $theme['pm_project'] = [
+    'render element' => 'elements',
+    'file' => 'pm_project.page.inc',
+    'template' => 'pm_project',
+  ];
+  $theme['pm_project_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'pm_project.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+* Implements hook_theme_suggestions_HOOK().
+*/
+function pm_project_theme_suggestions_pm_project(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#pm_project'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'pm_project__' . $sanitized_view_mode;
+  $suggestions[] = 'pm_project__' . $entity->bundle();
+  $suggestions[] = 'pm_project__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'pm_project__' . $entity->id();
+  $suggestions[] = 'pm_project__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}

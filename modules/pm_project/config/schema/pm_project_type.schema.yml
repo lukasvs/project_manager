@@ -1,0 +1,12 @@
+pm_project.pm_project_type.*:
+  type: config_entity
+  label: 'PM project type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string
