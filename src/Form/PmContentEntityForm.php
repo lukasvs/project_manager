@@ -143,6 +143,8 @@ class PmContentEntityForm extends ContentEntityForm {
       $form['path']['#group'] = 'path_settings';
     }
 
+    $form['revision']['#default_value'] = TRUE;
+
     return $form;
   }
 

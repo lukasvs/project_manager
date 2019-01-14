@@ -56,6 +56,7 @@ class PmTypeEntityForm extends BundleEntityFormBase {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
+    $status = parent::save($form, $form_state);
     $entity_type = $this->entity;
 
     $this->messenger()->addMessage($this->t('The entity type %label has been successfully saved.', ['%label' => $entity_type->label()]));

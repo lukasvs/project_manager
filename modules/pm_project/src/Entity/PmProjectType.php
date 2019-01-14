@@ -15,7 +15,7 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\project_manager\PmTypeListBuilder",
  *     "form" = {
- *       "add" = "Drupal\project_manager\Form\PmTypeEntityForm",
+ *       "add" = "Drupal\pm_project\Form\PmProjectTypeEntityForm",
  *       "edit" = "Drupal\project_manager\Form\PmTypeEntityForm",
  *       "delete" = "Drupal\project_manager\Form\PmTypeDeleteForm"
  *     },

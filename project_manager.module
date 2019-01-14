@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\entity\BundleFieldDefinition;
+use Drupal\Core\Config\Entity\ConfigEntityInterface;
+
 /**
  * Implements hook_theme().
  */
@@ -16,4 +19,98 @@ function project_manager_theme() {
  */
 function project_manager_toolbar_alter(&$items) {
   $items['administration']['#attached']['library'][] = 'project_manager/toolbar';
+}
+
+/**
+ * Gets the entity display for the given entity type and bundle.
+ *
+ * The entity display will be created if missing.
+ *
+ * @param string $entity_type
+ *   The entity type.
+ * @param string $bundle
+ *   The bundle.
+ * @param string $display_context
+ *   The display context ('view' or 'form').
+ *
+ * @throws \InvalidArgumentException
+ *   Thrown when an invalid display context is provided.
+ *
+ * @return \Drupal\Core\Entity\Display\EntityDisplayInterface
+ *   The entity display.
+ */
+function project_manager_get_entity_display($entity_type, $bundle, $display_context) {
+  if (!in_array($display_context, ['view', 'form'])) {
+    throw new \InvalidArgumentException(sprintf('Invalid display_context %s.', $display_context));
+  }
+
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_' . $display_context . '_display');
+  $display = $storage->load($entity_type . '.' . $bundle . '.default');
+  if (!$display) {
+    $display = $storage->create([
+      'targetEntityType' => $entity_type,
+      'bundle' => $bundle,
+      'mode' => 'default',
+      'status' => TRUE,
+    ]);
+  }
+
+  return $display;
+}
+
+/**
+ * Adds the default description field to a entity type.
+ *
+ * @param \Drupal\Core\Config\Entity\ConfigEntityInterface $entity_type
+ *   The entity type.
+ * @param string $label
+ *   (optional) The label for the description instance. Defaults to 'Description'.
+ */
+function project_manager_add_description_field(ConfigEntityInterface $entity_type, $label = 'Description', $name = 'description', $required = FALSE, $lock = TRUE) {
+  $field_definition = BundleFieldDefinition::create('text_with_summary')
+   ->setTargetEntityTypeId($entity_type->getEntityType()->getBundleOf())
+   ->setTargetBundle($entity_type->id())
+   ->setName($name)
+   ->setLabel($label)
+   ->setRequired($required)
+   ->setTranslatable(TRUE)
+   ->setSetting('display_summary', FALSE)
+   ->setDisplayOptions('form', [
+     'type' => 'text_textarea_with_summary',
+     'weight' => 2,
+   ])
+   ->setDisplayOptions('view', [
+    'label' => 'hidden',
+    'type' => 'text_default',
+  ]);
+
+  $configurable_field_manager = \Drupal::service('project_manager.configurable_field_manager');
+  $configurable_field_manager->createField($field_definition, $lock);
+}
+
+/**
+ * Adds the default references field to a entity type.
+ *
+ * References can't be a base field because the Views integration is broken.
+ * Instead, it is created as a configurable field for each entity type.
+ *
+ * @param \Drupal\Core\Config\Entity\ConfigEntityInterface $entity_type
+ *   The entity type.
+ */
+function project_manager_add_reference_field(ConfigEntityInterface $entity_type, $label, $name, $target_type, array $target_bundles, $lock = TRUE) {
+  $field_definition = BundleFieldDefinition::create('entity_reference')
+   ->setTargetEntityTypeId($entity_type->getEntityType()->getBundleOf())
+   ->setTargetBundle($entity_type->id())
+   ->setName($name)
+   ->setLabel($label)
+   ->setCardinality(BundleFieldDefinition::CARDINALITY_UNLIMITED)
+   ->setRequired(TRUE)
+   ->setSetting('target_type', $target_type)
+   ->setSetting('handler', 'default')
+   ->setSetting('handler_settings', [
+    'target_bundles' => $target_bundles
+  ]);
+
+  $configurable_field_manager = \Drupal::service('project_manager.configurable_field_manager');
+  $configurable_field_manager->createField($field_definition, $lock);
 }

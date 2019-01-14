@@ -4,4 +4,5 @@ description: Provides manager of project.
 core: 8.x
 package: Project manager
 dependencies:
+  - entity:entity
   - drupal:system (>=8.6.0)

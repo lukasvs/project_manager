@@ -1,0 +1,4 @@
+services:
+  project_manager.configurable_field_manager:
+    class: Drupal\project_manager\ConfigurableFieldManager
+    arguments: ['@entity_type.manager']
