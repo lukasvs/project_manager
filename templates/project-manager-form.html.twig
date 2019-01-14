@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Two column template for the eler-entity add/edit form.
+ * Two column template for the entity add/edit form.
  *
  * Available variables:
  * - form: The form.
@@ -9,15 +9,15 @@
  * @ingroup themeable
  */
 #}
-<div class="layout-eler-form clearfix">
-  <div class="layout-region layout-region-eler-main">
+<div class="layout-project-manager-form clearfix">
+  <div class="layout-region layout-region-project-manager-main">
     {{ form|without('advanced', 'footer', 'actions') }}
   </div>
-  <div class="layout-region layout-region-eler-secondary">
+  <div class="layout-region layout-region-project-manager-secondary">
     {{ form.advanced }}
   </div>
-  <div class="layout-region layout-region-eler-footer">
-    <div class="layout-region-eler-footer__content">
+  <div class="layout-region layout-region-project-manager-footer">
+    <div class="layout-region-project-manager-footer__content">
       {{ form.footer }}
       {{ form.actions }}
     </div>

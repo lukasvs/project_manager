@@ -24,7 +24,7 @@ class PmBundleEntityBase extends ConfigEntityBundleBase implements PmBundleEntit
   protected $label;
 
   /**
-   * The Eler entity type description.
+   * The entity type description.
    *
    * @var string
    */
